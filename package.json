@@ -1,0 +1,21 @@
+{
+  "name": "cljsc",
+  "version": "0.0.1",
+  "description": "Clojurescript library for styled-components interop",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "Clojurescript",
+    "styled-components"
+  ],
+  "author": "Robert Gersak",
+  "license": "ISC",
+  "dependencies": {
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1",
+    "shadow-cljs": "^2.11.4",
+    "styled-components": "^5.2.0"
+  }
+}

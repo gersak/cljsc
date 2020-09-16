@@ -1,0 +1,8 @@
+{:paths ["src/clj" 
+         "src/cljs" 
+         "test"]
+ :deps  {cljs-bean            {:mvn/version "1.5.0"}
+         thheller/shadow-cljs {:mvn/version "2.11.4"}}
+ :aliases
+ {:outdated {:extra-deps {olical/depot {:mvn/version "1.8.4"}}
+             :main-opts  ["-m" "depot.outdated.main"]}}}
