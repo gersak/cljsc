@@ -1,5 +1,8 @@
 (ns cljsc.core
-  (:require cljsc.util))
+  (:refer-clojure :exclude [import])
+  (:require 
+    cljsc.util
+    clojure.java.io))
 
 (defmacro defstyled
   "Macro takes style name component type and default style
@@ -20,3 +23,11 @@
                   ((juxt ~@mixins) clj-props#)))))))
       `(def ~cname
          ((cljsc.core/styled ~ctype) (fn [~props-sym] (cljs-bean.core/->js ~cstyle)))))))
+
+
+(defmacro import-resource
+  "Macro imports resource as string. Slurps file at
+  compile time that bound to input 'sym'"
+  [resource]
+  (let [data (clojure.core/slurp (clojure.java.io/resource resource))]
+    `(identity ~data)))

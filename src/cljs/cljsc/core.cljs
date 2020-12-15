@@ -11,7 +11,6 @@
 (def global-style createGlobalStyle)
 (def theme-provider ThemeProvider)
 
-
 (defn deep-merge
   "Recursively merges maps."
   [& maps]
@@ -20,14 +19,3 @@
               (apply merge-with m xs)
               (last xs)))]
     (reduce m maps)))
-
-(comment
-  (def m1
-    {:a 1
-     :b 2
-     :c {:d {:e 3}}})
-  (def m2
-    {:a 9
-     :c {:d {:e 120}
-         :g 0}})
-  (deep-merge m1 m2))
