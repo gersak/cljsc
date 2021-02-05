@@ -28,6 +28,11 @@
 (defmacro import-resource
   "Macro imports resource as string. Slurps file at
   compile time that bound to input 'sym'"
-  [resource]
-  (let [data (clojure.core/slurp (clojure.java.io/resource resource))]
-    `(identity ~data)))
+  [location]
+  (if-let [resource (clojure.java.io/resource location)]
+    (let [data (clojure.core/slurp resource)]
+      `(identity ~data))
+    (throw
+      (ex-info
+        "Couldn't find resource to import"
+        {:location location}))))
