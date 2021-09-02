@@ -10,12 +10,15 @@
   style attributes where mixins are pure fn that will receive
   props converted by cljs-bean.core/->clj function."
   [cname ctype cstyle & mixins]
-  (let [props-sym (gensym "props")]
+  (let [props-sym (gensym "props")
+        _ns (str *ns*)]
     (if (not-empty mixins)
       `(def ~cname
          ((cljsc.core/styled ~ctype)
           (fn [~props-sym]
-            (let [clj-props# (cljs-bean.core/->clj ~props-sym)] 
+            (let [clj-props# (assoc 
+                               (cljs-bean.core/->clj ~props-sym)
+                               :cljsc/component (symbol ~_ns '~cname))] 
               (cljs-bean.core/->js
                 (reduce 
                   cljsc.core/deep-merge
